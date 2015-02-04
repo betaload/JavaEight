@@ -1,4 +1,4 @@
-package com.sunjq.practices.Java8ReallyImpatientExcises;
+package com.squallsun.practices.Java8ReallyImpatientExcises;
 
 import java.io.File;
 import java.io.FileFilter;
