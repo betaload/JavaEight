@@ -42,24 +42,24 @@ public class Test {
 
       System.out.println("idToPerson: " + idToPerson.getClass().getName() + idToPerson);
 
-      Stream<Locale> locales = Stream.of(Locale.getAvailableLocales());
-      Map<String, String> languageNames = locales.collect(
-         Collectors.toMap(
-            Locale::getDisplayLanguage, 
-            Locale::getDisplayLanguage, 
-            (existingValue, newValue) -> existingValue));
-      System.out.println("languageNames: " + languageNames);
-
-      locales = Stream.of(Locale.getAvailableLocales());
-      Map<String, Set<String>> countryLanguageSets = locales.collect(
-         Collectors.toMap(
-            Locale::getDisplayCountry,
-            l -> Collections.singleton(l.getDisplayLanguage()),
-            (a, b) -> { // union of a and b
-               Set<String> r = new HashSet<>(a); 
-               r.addAll(b);
-               return r; }));
-      System.out.println("countryLanguageSets: " + countryLanguageSets);
+//      Stream<Locale> locales = Stream.of(Locale.getAvailableLocales());
+//      Map<String, String> languageNames = locales.collect(
+//         Collectors.toMap(
+//            Locale::getDisplayLanguage, 
+//            Locale::getDisplayLanguage, 
+//            (existingValue, newValue) -> existingValue));
+//      System.out.println("languageNames: " + languageNames);
+//
+//      locales = Stream.of(Locale.getAvailableLocales());
+//      Map<String, Set<String>> countryLanguageSets = locales.collect(
+//         Collectors.toMap(
+//            Locale::getDisplayCountry,
+//            l -> Collections.singleton(l.getDisplayLanguage()),
+//            (a, b) -> { // union of a and b
+//               Set<String> r = new HashSet<>(a); 
+//               r.addAll(b);
+//               return r; }));
+//      System.out.println("countryLanguageSets: " + countryLanguageSets);
    }
 }
 

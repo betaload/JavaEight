@@ -80,11 +80,11 @@ public class Test {
       System.out.println("stateToLongestCityName: " + stateToLongestCityName);
 
       locales = Stream.of(Locale.getAvailableLocales());
-      Map<String, Set<String>> countryToLanguages = locales.collect(
-         groupingBy(Locale::getDisplayCountry, 
-            mapping(Locale::getDisplayLanguage,
-               toSet())));
-      System.out.println("countryToLanguages: " + countryToLanguages);   
+//      Map<String, Set<String>> countryToLanguages = locales.collect(
+//         groupingBy(Locale::getDisplayCountry, 
+//            mapping(Locale::getDisplayLanguage,
+//               toSet())));
+//      System.out.println("countryToLanguages: " + countryToLanguages);   
 
       cities = readCities("./src/main/java/examplecode/ch2/sec11/cities.txt");
       Map<String, IntSummaryStatistics> stateToCityPopulationSummary = cities.collect(

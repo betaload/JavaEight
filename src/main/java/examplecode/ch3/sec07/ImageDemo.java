@@ -1,13 +1,20 @@
 package examplecode.ch3.sec07;
 
-import java.util.concurrent.*;
-import java.util.function.*;
-import javafx.application.*;
-import javafx.scene.*;
-import javafx.scene.image.*;
-import javafx.scene.layout.*;
-import javafx.scene.paint.*;
-import javafx.stage.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import java.util.function.UnaryOperator;
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 public class ImageDemo extends Application {
    public static Color[][] parallelTransform(Color[][] in, UnaryOperator<Color> f) {
@@ -37,7 +44,7 @@ public class ImageDemo extends Application {
    }
 
    public void start(Stage stage) {      
-      Image image = new Image("eiffel-tower.jpg");
+      Image image = new Image("./examplecode/ch3/sec07/eiffel-tower.jpg");
       int width = (int) image.getWidth();
       int height = (int) image.getHeight();
       Color[][] pixels = new Color[height][width];
@@ -55,4 +62,8 @@ public class ImageDemo extends Application {
                new ImageView(result))));
       stage.show();
    }
+   
+   public static void main(String[] args) {
+		launch(args);
+	}
 }

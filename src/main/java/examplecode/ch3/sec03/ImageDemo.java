@@ -1,6 +1,7 @@
 package examplecode.ch3.sec03;
 
 import java.util.function.*;
+
 import javafx.application.*;
 import javafx.scene.*;
 import javafx.scene.image.*;
@@ -39,12 +40,17 @@ public class ImageDemo extends Application {
    }
 
    public void start(Stage stage) {
-      Image image = new Image("queen-mary.png");
-      Image brightenedImage = transform(image, Color::brighter);
+      Image image = new Image("./examplecode/ch3/sec03/queen-mary.png");
+      Image brightenedImage = transform(image, x->x.brighter());
       Image image2 = transform(image, 
          (x, y, c) -> (x / 10) % 2 == (y / 10) % 2 ? Color.GRAY : c);
       
       stage.setScene(new Scene(new HBox(new ImageView(image), new ImageView(brightenedImage), new ImageView(image2))));
       stage.show();
    }
+   
+   public static void main(String[] args) {
+		launch(args);
+	}
+   
 }
