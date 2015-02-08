@@ -5,6 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -53,11 +54,68 @@ public class Chapter2 {
         stream.forEach(i-> System.out.println(i));
     }
 
+    public static Stream<Long> e5(long seed, long a, long c, long m) {
+        return Stream.iterate(seed, x -> (a * x + c) % m);
+    }
+
+    public static void e6(String s) {
+        Stream s1 = Stream.iterate(0, n -> n + 1).limit(s.length()).map(i -> s.charAt(i));
+        Stream s2 = IntStream.range(0,s.length()).mapToObj(x->s.charAt(x));
+        s1.forEach(System.out::print);
+        s2.forEach(System.out::print);
+    }
+
+
+    public static <T> Stream<T> zip(Stream<T> first, Stream<T> second) {
+        Iterator<T> iterSecond = second.iterator();
+        return first.flatMap(t -> {
+                if (iterSecond.hasNext()) {
+                    return Arrays.asList(t, iterSecond.next()).stream();
+                } else {
+                    first.close();
+                    return null;
+                }
+            }
+        );
+    }
+    public static void e8() {
+        Stream<String> first = Stream.of("1", "2", "3", "4", "5", "6");
+        Stream<String> second = Stream.of("a", "b", "c", "d", "e");
+        Iterator<String> iterSecond = second.iterator();
+        first.flatMap(t -> {
+                if (iterSecond.hasNext()) {
+                    return Arrays.asList(t, iterSecond.next()).stream();
+                } else {
+                    first.close();
+                    return null;
+                }
+            }
+        ).forEach(System.out::print);
+    }
+
+    public static void e9() {
+        Stream<String> first = Stream.of("1", "2", "3", "4", "5", "6");
+        Stream<String> second = Stream.of("a", "b", "c", "d", "e");
+        Iterator<String> iterSecond = second.iterator();
+        first.flatMap(t -> {
+                if (iterSecond.hasNext()) {
+                    return Arrays.asList(t, iterSecond.next()).stream();
+                } else {
+                    first.close();
+                    return null;
+                }
+            }
+        ).forEach(System.out::print);
+    }
+
     public static void main(String[] args) throws IOException {
-        e1();
-        e2();
-        e3();
-        e4();
+//        e1();
+//        e2();
+//        e3();
+//        e4();
+//        e5(0, 25214903917L, 11, (2 ^ 48)).limit(5).forEach(System.out::println);
+//        e6("test");
+        e8();
     }
 
 }
